@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Modern Business - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/modern-business.css' %}" rel="stylesheet">
+    <title></title>
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <div class="fixed-top">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'TheApp:index' %}">ME-BLOG</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item">
+              <a class="nav-link" href="services.html">Explore</a>
+            </li>
+            {% if user.is_authenticated %}
+                      <li><a class= 'nav-link' href="{% url 'logout' %}">Logout</a></li>
+                      <li>  <a class="nav-link" href="{% url 'TheApp:userblog' %}">{{ user.username }}</a></li>
+                      {% else %}
+                      <li><a class= 'nav-link' href="{% url 'TheApp:user_login' %}">Login</a></li>
+                      {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    </div>
+
+
+    <!-- Footer -->
+    <div class="fixed-bottom">
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+    </div>
+
+
+
+
+<div class="container">
+  {% block body_block %}
+  {% endblock %}
+</div>
+
+  </body>
+</html>
