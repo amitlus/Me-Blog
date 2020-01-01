@@ -2,8 +2,21 @@
 {% load static %}
 {% block body_block %}
 <div class="container">
-  {{ draft }}
+ <h1>This is a preview of you're post:
+{{draft}}
+ </h1>
 
+ <p>Are you sure you want to save the changes you made?</p>
 </div>
+
+<!-- Call to Action Section -->
+<div class="row mb-4" style = "padding-bottom: 100px;">
+
+
+  <div class="col-md-4">
+    <a class="btn btn-lg btn-secondary btn-block" href="{% url 'TheApp:userblog' %}">Save Changes</a>
+  </div>
+</div>
+
 
 {% endblock %}

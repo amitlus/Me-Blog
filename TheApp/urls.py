@@ -8,6 +8,8 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('register', views.register, name='register'),
     path('user_login', views.user_login, name='user_login'),
-    path('userblog', views.blog_name, name='userblog'),
+    path('<str:user.username>/', views.userblog, name='userblog'),
     path('draft', views.draft, name='draft'),
+    path('explore', views.Explore.as_view(), name='explore'),#נטו בשביל הtemplate url בbase כדי שבלחיצה על האקספלור בסרגל זה יעביר אותי
+
 ]

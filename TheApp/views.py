@@ -4,6 +4,8 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
+from django.views.generic import View, TemplateView, ListView, DetailView
+from. import models
 # Create your views here.
 def index(request):
     return render(request, 'TheApp/index.html')
@@ -70,13 +72,21 @@ def user_login(request):
         return render(request, 'TheApp/login.html',)
 
 
-def blog_name(request):
-    current_user = request.user.username
-    return render(request, 'TheApp/userblog.html', {'blogname':current_user})
+def userblog(request):
+    return render(request, 'TheApp/userblog.html')
 
 def draft(request):
     if request.method == 'POST':
         draft = request.POST.get('post_content')
         return render(request, 'TheApp/draft.html', {'draft':draft})
+#רציתי להכניס לdraft את הערך של הpost_content שזה השם שנתתי לtextarea אבל זה לא עבד.
+#לא מחקתי את שורת הקוד כי עדיין לא פתרתי את הבעיה (למרות שבדף של הdraft.html אני מנסה דרך אחרת בעזרת js)
+
     else:
         return render(request, 'TheApp/userblog.html',)
+
+
+class Explore(ListView):
+    context_object_name = 'blogs'
+    model = models.UserProfileInfo
+    template_name = 'TheApp/explore.html'
